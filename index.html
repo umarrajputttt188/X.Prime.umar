@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,86 +13,100 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #080b14;
+  background: #090b14;
   color: white;
 }
 
 header {
+  background: #171326;
+  padding: 22px;
   text-align: center;
-  padding: 28px 12px;
-  background: linear-gradient(135deg, #15172c, #29113c);
   border-bottom: 2px solid #ff287f;
 }
 
 header h1 {
   color: #ff398b;
   margin: 0;
-  font-size: 30px;
-}
-
-header p {
-  color: #ddd;
 }
 
 .container {
   width: 92%;
-  max-width: 480px;
-  margin: 25px auto;
+  max-width: 430px;
+  margin: 30px auto;
 }
 
 .card {
-  background: #141827;
-  padding: 20px;
-  margin-bottom: 16px;
-  border-radius: 15px;
+  background: #171b2b;
   border: 1px solid #30354b;
+  border-radius: 15px;
+  padding: 22px;
+  margin-bottom: 18px;
 }
 
-.card h2 {
-  margin-top: 0;
-  font-size: 21px;
+h2 {
+  text-align: center;
 }
 
 input, select {
+  display: block;
   width: 100%;
   padding: 13px;
-  margin: 9px 0;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #454b61;
   background: #090d19;
   color: white;
-  border: 1px solid #444b63;
-  border-radius: 8px;
   font-size: 15px;
 }
 
 button {
   width: 100%;
   padding: 13px;
-  background: #ff287f;
-  color: white;
   border: none;
   border-radius: 8px;
+  background: #ff287f;
+  color: white;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 8px;
 }
 
 button:hover {
-  background: #db1765;
+  background: #d91b66;
+}
+
+.secondary {
+  background: #34394e;
+}
+
+.note {
+  color: #b8bfd2;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 #message {
   margin-top: 15px;
-  padding: 12px;
-  border-radius: 8px;
-  line-height: 1.5;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+#dashboard, #auth {
   display: none;
-  background: #222941;
+}
+
+.service {
+  padding: 15px;
+  margin: 10px 0;
+  background: #22273a;
+  border-radius: 9px;
 }
 
 footer {
   text-align: center;
+  color: #a5a9b8;
   padding: 20px;
-  color: #9ca3b8;
   font-size: 13px;
 }
 </style>
@@ -103,87 +116,241 @@ footer {
 
 <header>
   <h1>X.prime.umar</h1>
-  <p>TikTok Creator Tools</p>
+  <p>TikTok Creator Dashboard</p>
 </header>
 
 <div class="container">
 
-  <div class="card">
-    <h2>🚀 Choose Your Service</h2>
+  <!-- LOGIN / SIGNUP -->
+  <section id="auth" class="card">
+    <h2 id="formTitle">Create Account</h2>
 
-    <form id="serviceForm">
-      <label for="service">Select Option</label>
-      <select id="service" required>
+    <form id="authForm">
+      <input
+        id="email"
+        type="email"
+        placeholder="Email address"
+        autocomplete="email"
+        required
+      >
+
+      <input
+        id="password"
+        type="password"
+        placeholder="Password (minimum 6 characters)"
+        autocomplete="new-password"
+        minlength="6"
+        required
+      >
+
+      <button id="submitBtn" type="submit">
+        Sign Up
+      </button>
+    </form>
+
+    <button
+      id="switchBtn"
+      class="secondary"
+      type="button"
+    >
+      Already have an account? Login
+    </button>
+
+    <button
+      id="resetBtn"
+      class="secondary"
+      type="button"
+    >
+      Forgot Password?
+    </button>
+
+    <p id="message" role="status"></p>
+
+    <p class="note">
+      یہ آپ کی ویب سائٹ کا اکاؤنٹ ہے،
+      TikTok اکاؤنٹ نہیں۔
+    </p>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard">
+
+    <div class="card">
+      <h2>Welcome to X.prime.umar</h2>
+
+      <p>Login Email:</p>
+      <p id="userEmail"></p>
+
+      <button id="logoutBtn" class="secondary">
+        Logout
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>Creator Services</h2>
+
+      <label for="service">Choose Service</label>
+
+      <select id="service">
         <option value="Likes">❤️ TikTok Likes</option>
         <option value="Views">👁️ TikTok Views</option>
         <option value="Comments">💬 TikTok Comments</option>
         <option value="Followers">👥 TikTok Followers</option>
       </select>
 
-      <label for="link">TikTok Video/Profile Link</label>
+      <label for="tiktokLink">
+        TikTok Video or Profile Link
+      </label>
+
       <input
-        id="link"
+        id="tiktokLink"
         type="url"
-        placeholder="https://www.tiktok.com/@username/..."
-        required
+        placeholder="Paste TikTok URL"
       >
 
-      <button type="submit">Submit Request</button>
-    </form>
+      <button id="requestBtn" type="button">
+        Submit Request
+      </button>
 
-    <div id="message" role="status"></div>
-  </div>
+      <p id="requestMessage" class="note"></p>
 
-  <div class="card">
-    <h2>📌 How It Works</h2>
-    <p>1. Choose your preferred option.</p>
-    <p>2. Enter your TikTok link.</p>
-    <p>3. Submit your demo request.</p>
-    <p style="color:#ff8ab9">
-      Note: Requests are only demonstrated
-      on this page. No TikTok activity is changed.
-    </p>
-  </div>
+      <p class="note">
+        یہ ڈیش بورڈ فی الحال صرف انٹرفیس ہے۔
+        حقیقی لائکس، ویوز، کمنٹس یا فالوورز
+        فراہم کرنے کے لیے الگ مجاز بیک اینڈ
+        اور متعلقہ سروس کی ضرورت ہے۔
+      </p>
+    </div>
+
+  </section>
 
 </div>
 
 <footer>
-  © 2026 X.prime.umar | All Rights Reserved
+  © 2026 X.prime.umar
 </footer>
 
-<script>
-document.getElementById("serviceForm")
-.addEventListener("submit", function(event) {
+<script type="module">
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+/*
+  Firebase Console سے اپنی configuration یہاں درج کریں۔
+*/
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const authSection = document.getElementById("auth");
+const dashboard = document.getElementById("dashboard");
+const authForm = document.getElementById("authForm");
+const formTitle = document.getElementById("formTitle");
+const submitBtn = document.getElementById("submitBtn");
+const switchBtn = document.getElementById("switchBtn");
+const resetBtn = document.getElementById("resetBtn");
+const message = document.getElementById("message");
+
+let isSignup = true;
+
+function showMessage(text) {
+  message.textContent = text;
+}
+
+function friendlyError(error) {
+  const errors = {
+    "auth/email-already-in-use":
+      "یہ ای میل پہلے سے رجسٹرڈ ہے۔ Login کریں۔",
+
+    "auth/invalid-email":
+      "درست ای میل درج کریں۔",
+
+    "auth/weak-password":
+      "زیادہ مضبوط پاس ورڈ استعمال کریں۔",
+
+    "auth/invalid-credential":
+      "ای میل یا پاس ورڈ درست نہیں۔",
+
+    "auth/network-request-failed":
+      "انٹرنیٹ کنکشن چیک کریں۔",
+
+    "auth/too-many-requests":
+      "بہت زیادہ کوششیں ہوئیں۔ کچھ دیر بعد دوبارہ کوشش کریں۔"
+  };
+
+  return errors[error.code] ||
+    "خرابی پیش آئی۔ Firebase کی ترتیبات چیک کریں۔";
+}
+
+switchBtn.addEventListener("click", () => {
+  isSignup = !isSignup;
+
+  formTitle.textContent = isSignup
+    ? "Create Account"
+    : "Login";
+
+  submitBtn.textContent = isSignup
+    ? "Sign Up"
+    : "Login";
+
+  switchBtn.textContent = isSignup
+    ? "Already have an account? Login"
+    : "New user? Create Account";
+
+  document.getElementById("password").autocomplete =
+    isSignup ? "new-password" : "current-password";
+
+  showMessage("");
+});
+
+authForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const service = document.getElementById("service").value;
-  const link = document.getElementById("link").value;
-  const message = document.getElementById("message");
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  submitBtn.disabled = true;
+  showMessage("Please wait...");
 
   try {
-    const url = new URL(link);
+    if (isSignup) {
+      await createUserWithEmailAndPassword(
+        auth, email, password
+      );
 
-    if (
-      url.protocol !== "https:" ||
-      !["tiktok.com", "www.tiktok.com",
-        "m.tiktok.com", "vm.tiktok.com",
-        "vt.tiktok.com"].includes(url.hostname)
-    ) {
-      throw new Error("Invalid link");
+      showMessage("Account created successfully!");
+    } else {
+      await signInWithEmailAndPassword(
+        auth, email, password
+      );
+
+      showMessage("Login successful!");
     }
-
-    message.textContent =
-      "Demo request created for " + service +
-      ". No likes, views, comments or followers were added.";
-
   } catch (error) {
-    message.textContent =
-      "Please enter a valid TikTok link.";
+    showMessage(friendlyError(error));
+  } finally {
+    submitBtn.disabled = false;
   }
-
-  message.style.display = "block";
 });
-</script>
 
-</body>
-  </html>
+resetBtn.addEventListener("click", async () => {
+  const email =
+   
