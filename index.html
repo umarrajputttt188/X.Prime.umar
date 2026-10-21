@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X.prime.umar</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #080b14;
+  color: white;
+}
+
+header {
+  text-align: center;
+  padding: 28px 12px;
+  background: linear-gradient(135deg, #15172c, #29113c);
+  border-bottom: 2px solid #ff287f;
+}
+
+header h1 {
+  color: #ff398b;
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  color: #ddd;
+}
+
+.container {
+  width: 92%;
+  max-width: 480px;
+  margin: 25px auto;
+}
+
+.card {
+  background: #141827;
+  padding: 20px;
+  margin-bottom: 16px;
+  border-radius: 15px;
+  border: 1px solid #30354b;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 21px;
+}
+
+input, select {
+  width: 100%;
+  padding: 13px;
+  margin: 9px 0;
+  background: #090d19;
+  color: white;
+  border: 1px solid #444b63;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  background: #ff287f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #db1765;
+}
+
+#message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  line-height: 1.5;
+  display: none;
+  background: #222941;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #9ca3b8;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>X.prime.umar</h1>
+  <p>TikTok Creator Tools</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>🚀 Choose Your Service</h2>
+
+    <form id="serviceForm">
+      <label for="service">Select Option</label>
+      <select id="service" required>
+        <option value="Likes">❤️ TikTok Likes</option>
+        <option value="Views">👁️ TikTok Views</option>
+        <option value="Comments">💬 TikTok Comments</option>
+        <option value="Followers">👥 TikTok Followers</option>
+      </select>
+
+      <label for="link">TikTok Video/Profile Link</label>
+      <input
+        id="link"
+        type="url"
+        placeholder="https://www.tiktok.com/@username/..."
+        required
+      >
+
+      <button type="submit">Submit Request</button>
+    </form>
+
+    <div id="message" role="status"></div>
+  </div>
+
+  <div class="card">
+    <h2>📌 How It Works</h2>
+    <p>1. Choose your preferred option.</p>
+    <p>2. Enter your TikTok link.</p>
+    <p>3. Submit your demo request.</p>
+    <p style="color:#ff8ab9">
+      Note: Requests are only demonstrated
+      on this page. No TikTok activity is changed.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 X.prime.umar | All Rights Reserved
+</footer>
+
+<script>
+document.getElementById("serviceForm")
+.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const service = document.getElementById("service").value;
+  const link = document.getElementById("link").value;
+  const message = document.getElementById("message");
+
+  try {
+    const url = new URL(link);
+
+    if (
+      url.protocol !== "https:" ||
+      !["tiktok.com", "www.tiktok.com",
+        "m.tiktok.com", "vm.tiktok.com",
+        "vt.tiktok.com"].includes(url.hostname)
+    ) {
+      throw new Error("Invalid link");
+    }
+
+    message.textContent =
+      "Demo request created for " + service +
+      ". No likes, views, comments or followers were added.";
+
+  } catch (error) {
+    message.textContent =
+      "Please enter a valid TikTok link.";
+  }
+
+  message.style.display = "block";
+});
+</script>
+
+</body>
+  </html>
